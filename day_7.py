@@ -4,7 +4,7 @@ import itertools
 from threading import Thread
 from queue import Queue
 
-import Intcode
+import intcode
 
 program = [
 	3, 8, 1001, 8, 10, 8, 105, 1, 0, 0, 21, 30, 55, 80, 101, 118, 199, 280, 361,
@@ -44,7 +44,7 @@ def find_max_thruster_signal() -> int:
 		for setting in p:
 			#program_copy = program.copy()
 			#res = Intcode.run(program, [setting, next_input])
-			machine = Intcode.Machine(program.copy(), [setting, next_input])
+			machine = intcode.Machine(program.copy(), [setting, next_input])
 			res = machine.run()
 			next_input = res[0]
 		if next_input > max:
@@ -55,7 +55,7 @@ def find_max_thruster_signal() -> int:
 ## PART 2 ##
 settings_2 = [5, 6, 7, 8, 9]
 
-def find_max_thuster_signal_with_feedback() -> int:
+def find_max_thruster_signal_with_feedback() -> int:
 	possibilities = itertools.permutations(settings_2)
 	max = 0
 	for p in possibilities:
@@ -74,7 +74,7 @@ def find_max_thuster_signal_with_feedback() -> int:
 			user_input = [p[i]] # p[i] is the used setting
 			if i == 0:
 				user_input.append(0)
-			machine = Intcode.Machine(program.copy(), user_input, queues[i-1], queues[i])
+			machine = intcode.Machine(program.copy(), user_input, queues[i-1], queues[i])
 			t = Thread(target = machine.run)
 			t.start()
 			amplifiers.append(t)

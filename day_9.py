@@ -1,5 +1,5 @@
 ## PART 1 ##
-import Intcode
+import intcode
 
 program = [
 	1102, 34463338, 34463338, 63, 1007, 63, 34463338, 63, 1005, 63, 53, 1102, 1,
@@ -63,7 +63,7 @@ program = [
 
 
 def main() -> int:
-	machine = Intcode.Machine(program, [1])
+	machine = intcode.Machine(program, [1])
 	return machine.run()[0]
 	
 #if __name__ == '__main__':
@@ -71,7 +71,7 @@ def main() -> int:
 
 ## PART 2 ##
 def main_2() -> int:
-	machine = Intcode.Machine(program, [2])
+	machine = intcode.Machine(program, [2])
 	return machine.run()[0]
 	
 if __name__ == '__main__':
