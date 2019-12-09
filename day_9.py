@@ -64,7 +64,7 @@ program = [
 
 def main() -> int:
 	machine = Intcode.Machine(program, [1])
-	return machine.run()
+	return machine.run()[0]
 	
 #if __name__ == '__main__':
 #	print(main())
@@ -72,7 +72,7 @@ def main() -> int:
 ## PART 2 ##
 def main_2() -> int:
 	machine = Intcode.Machine(program, [2])
-	return machine.run()
+	return machine.run()[0]
 	
 if __name__ == '__main__':
 	print(main_2())
