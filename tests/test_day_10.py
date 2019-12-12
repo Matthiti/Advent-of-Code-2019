@@ -2,7 +2,6 @@ import unittest
 import sys
 
 sys.path.append('../')
-import intcode
 import day_10
 
 class TestDay10(unittest.TestCase):
