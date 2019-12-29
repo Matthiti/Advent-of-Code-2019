@@ -1,4 +1,4 @@
-## LAST CHANGE: DAY 9 ##
+## LAST CHANGE: DAY 19 ##
 ## Has been adapted to support mock input and returns the output ##
 from enum import Enum
 from queue import Queue
@@ -45,11 +45,12 @@ class Instruction(object):
 
 
 class Machine(object):
-	def __init__(self, program: [int], user_input: [int] = [], q_in: Queue = None, q_out: Queue = None):
+	def __init__(self, program: [int], user_input: [int] = [], q_in: Queue = None, q_out: Queue = None, no_output: bool = False):
 		self.program = program
 		self.user_input = user_input
 		self.q_in = q_in
 		self.q_out = q_out
+		self.no_output = no_output
 		self.relative_base = 0
 
 	def get_value(self, index: int, mode: ParameterMode) -> int:
@@ -85,6 +86,7 @@ class Machine(object):
 		return int(input("INPUT: "))
 	
 	def _out(self, output: int):
+		if self.no_output: return
 		if self.q_out is not None:
 			self.q_out.put(output)
 		else:
